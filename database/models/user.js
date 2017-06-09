@@ -1,25 +1,24 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var postSchema = new Schema({
-  title: {
+var userSchema = new Schema({
+  firstname: {
     type: String,
     required: true
   }, 
-  image: {
+  lastname: {
     type: String
   },
-  source: {
+  email: {
     type: String,
     required: true
   },
-  content: {
-    type: String,
-    required: true
-  },
-  views: {
+  permission: {
     type: Number,
-    default: 0,
+    default: 0
+  },
+  password: {
+    type: String,
     required: true
   }
 }, {
@@ -29,8 +28,8 @@ var postSchema = new Schema({
   }
 });
 
-var Post = mongoose.model('Post', postSchema);
+var User = mongoose.model('User', userSchema);
 
 module.exports = function(registry) {
-  registry['Post'] = Post;
+  registry['User'] = User;
 };

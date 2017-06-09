@@ -10,5 +10,5 @@ var server = app.listen(app.get('port'), function() {
 
 /* Configure database connection */
 db.connect('mongodb://localhost/news4').connection.once('open', function() {
-	console.log('connection');
+	console.log('connected to database');
 });

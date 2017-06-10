@@ -5777,3 +5777,7 @@ a.badge:hover {
   width: 95%;
   height: 300px;
 }
+
+.color_black {
+  color: black;
+}

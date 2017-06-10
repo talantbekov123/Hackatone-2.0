@@ -18,5 +18,5 @@ module.exports = function(app, db) {
     })
   });
   
-  app.use('/', router);
+  app.use('/users', router);
 };

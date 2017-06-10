@@ -5772,3 +5772,8 @@ a.badge:hover {
 .affix {
   position: fixed;
 }
+
+.myTextarea {
+  width: 95%;
+  height: 300px;
+}

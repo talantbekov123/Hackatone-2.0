@@ -5,12 +5,35 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var glob = require('glob');
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 var app = express();
 
 // set axilary global variables
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set('db', 'mongodb://localhost/news9');
+/* facebook aoth handler */
+passport.use(new FacebookStrategy({
+        clientID: '1860725214215638',
+        clientSecret: '29c0d5e69d983fce069166482a9cb080',
+        callbackURL: 'http://localhost:3030/register/fb/callback',
+        profileFields: ['id', 'first_name', 'last_name', 'email', 'birthday']
+    },
+    function(accessToken, refreshToken, profile, cb) {
+        // user_data store json with provided user data
+        cb(profile);
+    }
+));
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
 /* install those libraries to all routes */
 app.use(favicon());

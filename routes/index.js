@@ -9,12 +9,6 @@ module.exports = function(app, db) {
 		});
 	});
 
-	router.get('/register', function(req, res) {
-		db.Post.find({}, function(err, posts) {
-			res.render('register', {});
-		});
-	});
-
 	router.post('/login', function(req, res) {
 		db.User.findOne({ login: req.body.login, password: req.body.password  }, function (err, user) {
 			if(user == null) {

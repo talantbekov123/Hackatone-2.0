@@ -2,35 +2,41 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var postSchema = new Schema({
-  title: {
-    type: String,
-    required: true
-  }, 
-  image: {
-    type: String
-  },
-  source: {
-    type: String,
-    required: true
-  },
-  content: {
-    type: String,
-    required: true
-  },
-  views: {
-    type: Number,
-    default: 0,
-    required: true
-  }
+	title: {
+		type: String
+	},
+	about: {
+		type: String
+	},
+	image: {
+		type: String
+	},
+	source: {
+		type: String
+	},
+	content: {
+		type: String
+	},
+	views: {
+		type: Number,
+		default: 0,
+		required: true
+	},
+	tags: [{
+		tag : {
+			type: Schema.Types.ObjectId,
+			ref: 'Tag' 
+		}
+	}],
 }, {
-  timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
-  }
+	timestamps: {
+		createdAt: 'created_at',
+		updatedAt: 'updated_at'
+	}
 });
 
 var Post = mongoose.model('Post', postSchema);
 
 module.exports = function(registry) {
-  registry['Post'] = Post;
+	registry['Post'] = Post;
 };

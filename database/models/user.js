@@ -2,34 +2,41 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-  firstname: {
-    type: String,
-    required: true
-  }, 
-  lastname: {
-    type: String
-  },
-  email: {
-    type: String,
-    required: true
-  },
-  permission: {
-    type: Number,
-    default: 0
-  },
-  password: {
-    type: String,
-    required: true
-  }
+	login: {
+		type: String,
+		unique: true,
+		sparse: true
+	},
+	fb_id: {
+		type: String,
+		unique: true,
+		sparse: true
+	},
+	firstname: {
+		type: String
+	}, 
+	lastname: {
+		type: String
+	},
+	email: {
+		type: String
+	},
+	permission: {
+		type: Number,
+		default: 0
+	},
+	password: {
+		type: String
+	}
 }, {
-  timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
-  }
+	timestamps: {
+		createdAt: 'created_at',
+		updatedAt: 'updated_at'
+	}
 });
 
 var User = mongoose.model('User', userSchema);
 
 module.exports = function(registry) {
-  registry['User'] = User;
+	registry['User'] = User;
 };

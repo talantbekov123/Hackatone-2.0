@@ -48,20 +48,13 @@
         <!-- Page Content
         ================================================== --> 
         <div class="span6"><!--Begin page content column-->
+            <% for(var i = 0; i < posts.length; i++) { %>
+                    <h2 class="title-bg"><%= posts[i].about %></h2>
 
-            <h2 class="title-bg">Double Sidebar Example</h2>
+                    <a href="/single?id=<%= posts[i]._id %>"> <img src="../post_images/<%= posts[i].image %>"> </a>
 
-            <img src="img/gallery/news-1.jpg" alt="Image">
-
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin tristique tellus in est vulputate luctus fermentum ipsum molestie.</p>
-
-            <img src="img/gallery/news-2.jpg" alt="Image">
-
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin tristique tellus in est vulputate luctus fermentum ipsum molestie.</p>
-
-            <img src="img/gallery/news-3.jpg" alt="Image">
-
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin tristique tellus in est vulputate luctus fermentum ipsum molestie.</p>
+                    <p class="lead"><%= posts[i].content %></p>
+            <% } %>
 
             <div class="row">
                 <div class="span3">

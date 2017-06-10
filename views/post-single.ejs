@@ -11,13 +11,13 @@
 
             <!-- Blog Post 1 -->
             <article>
-                <h3 class="title-bg"><a href="#">A subject that is beautiful in itself</a></h3>
+                <h3 class="title-bg"> <%= post.title %></h3>
                 <div class="post-content">
-                    <a href="#"><img src="img/gallery/post-img-1.jpg" alt="Post Thumb"></a>
+                    <img src="../post_images/<%= post.image %>">
+
 
                     <div class="post-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin tristique tellus in est vulputate luctus fermentum ipsum molestie. Vivamus tincidunt sem eu magna varius elementum. Maecenas felis tellus, fermentum vitae laoreet vitae, volutpat et urna. Nulla faucibus ligula eget ante varius ac euismod odio placerat. Nam sit amet felis non lorem faucibus rhoncus vitae id dui. Vivamus tincidunt sem eu magna varius elementum. Maecenas felis tellus, fermentum vitae laoreet vitae, volutpat et urna. Nulla faucibus ligula eget ante varius ac euismod odio placerat. Nam sit amet felis non lorem faucibus rhoncus vitae id dui.Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin tristique tellus in est vulputate luctus fermentum ipsum molestie. Vivamus tincidunt sem eu magna varius elementum. Maecenas felis tellus, fermentum vitae laoreet vitae, volutpat et urna. Nulla faucibus ligula eget ante varius ac euismod odio placerat. Nam sit amet felis non lorem faucibus rhoncus vitae id dui.</p>
-
+                        <p><%= post.content %></p>
                         
                     </div>
 

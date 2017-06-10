@@ -5,7 +5,7 @@ module.exports = function(app, db) {
 
 	router.get('/', function(req, res) {
 		db.Post.find({}, function(err, posts) {
-			res.render('index', {});
+			res.render('index', {posts: posts});
 		});
 	});
 
@@ -23,7 +23,9 @@ module.exports = function(app, db) {
 	
 
 	router.get('/single', function(req, res) {
-		res.render('post-single', {});
+		db.Post.findOne({ _id: req.query.id }, function(err, post) {
+			res.render('post-single', {post: post});
+		});
 	});
 
 	app.use('/', router);

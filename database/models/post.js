@@ -14,9 +14,6 @@ var postSchema = new Schema({
 	source: {
 		type: String
 	},
-	content: {
-		type: String
-	},
   user_id: {
     type: Schema.Types.ObjectId,
     ref: 'User'

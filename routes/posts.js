@@ -58,22 +58,22 @@ module.exports = function(app, db) {
   });
 
   router.post('/add/comment', function(req, res) {
+    console.log(req.body.from);
     var comment = new db.Comment({
-      text: req.body.text,
+      text: req.body.comment,
       post_id: req.body._id,
-      from: req.body.from,
+      user_id: req.body.from,
       axilary_date: new Date().toLocaleString('ru', {
         month: 'long',
         day: 'numeric',
         hour: 'numeric',
         minute: 'numeric',
         year: 'numeric'
-
       })
     });
 
     comment.save(function(err, user) {
-      return res.redirect('/posts/single?_id=' + req.body._id);
+      return res.redirect('/single?id=' + req.body._id);
     });
   });
 

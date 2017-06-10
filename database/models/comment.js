@@ -3,14 +3,17 @@ var Schema = mongoose.Schema;
 
 var commentSchema = new Schema({
   post_id: {
-    type: Schema.Types.ObjectId,
-    ref: 'Post' 
+    type: String,
+    required: true
   },
   user_id: {
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
   text: {
+    type: String,
+    required: true
+  }, axilary_date: {
     type: String,
     required: true
   }

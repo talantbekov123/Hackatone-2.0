@@ -18,5 +18,10 @@ module.exports = function(app, db) {
     })
   });
   
+  router.get('/rating', function(req, res) {
+    db.User.findAll().exec(function(err, posts) {
+      db.
+    })
+  })
   app.use('/users', router);
 };

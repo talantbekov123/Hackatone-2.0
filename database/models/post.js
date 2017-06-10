@@ -5,7 +5,11 @@ var postSchema = new Schema({
   title: {
     type: String,
     required: true
-  }, 
+  },
+  user_id: {
+    type: Schema.Type.ObjectId,
+    ref: 'User'
+  }
   image: {
     type: String
   },

@@ -31,12 +31,15 @@ module.exports = function(app, db) {
 
 	router.get('/single', function(req, res) {
 		db.Comment.find({ post_id: req.query.id }).populate('user_id').exec(function(err, comments) { 
-			db.Post.findOne({ _id: req.query.id }).populate('comments').exec(function(err, post){ 
+			db.Post.findOne({ _id: req.query.id }).populate('comments tags').exec(function(err, post){ 
 				db.Sympathy.findOne({post_id: post._id, user_id: req.cookies.user._id}).exec(function(err, sympathy) {
 					db.Sympathy.count({post_id: post._id, state: 1}).exec(function(err, pos) {
 						db.Sympathy.count({post_id: post._id, state: -1}).exec(function(err, neg) {
 							db.User.findOne({id: post.user_id}).exec(function(err, user) {
-								res.render('post-single', {comments: comments, user: user, post: post, sympathyCount: pos - neg, sympathy: sympathy });
+								post.views = post.views + 1;
+              					post.save(function() {
+									res.render('post-single', {comments: comments, user: user, post: post, sympathyCount: pos - neg, sympathy: sympathy });
+								});
 							})
 						});
 					});

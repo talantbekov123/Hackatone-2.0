@@ -24,10 +24,8 @@ var postSchema = new Schema({
 		required: true
 	},
 	tags: [{
-		tag : {
-			type: Schema.Types.ObjectId,
-			ref: 'Tag' 
-		}
+		type: Schema.Types.ObjectId,
+		ref: 'Tag'
 	}],
 }, {
 	timestamps: {

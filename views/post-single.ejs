@@ -35,7 +35,11 @@
                             <li><i class="icon-calendar"></i> 09/04/15</li>
                             <li><i class="icon-user"></i> <a href="/profile?id=<%= user._id%>"><%= user.login%></a></li>
                             <li><i class="icon-comment"></i> <a href="#">5 Comments</a></li>
-                            <li><i class="icon-tags"></i> <a href="#">photoshop</a>, <a href="#">tutorials</a>, <a href="#">illustration</a></li>
+                            <li><i class="icon-tags"></i>
+                            <% for(var i = 0; i < post.tags.length; i++) {%>
+                            <a href="#"><%= post.tags[i].name %></a>
+                            <% } %>
+                            </li>
                         </ul>
                     </div>
                 </div>

@@ -10,7 +10,14 @@ db.connect(app.get('db')).connection.once('open', function() {
 		const posts = [{
 			title: 'title',
 			about: 'about1',
-			image: 'post1',
+			image: 'news-1',
+			source: 'http://prokg.org/',
+			content: 'content',
+			tags: [ { tag: tags[2]._id } ]
+		}, {
+			title: 'title',
+			about: 'about1',
+			image: 'news-2',
 			source: 'http://prokg.org/',
 			content: 'content',
 			tags: [ { tag: tags[2]._id } ]

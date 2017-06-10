@@ -48,20 +48,13 @@
         <!-- Page Content
         ================================================== --> 
         <div class="span6"><!--Begin page content column-->
+            <% for(var i = 0; i < posts.length; i++) { %>
+                    <h2 class="title-bg"><%= posts[i].about %></h2>
 
-            <h2 class="title-bg">Double Sidebar Example</h2>
+                    <a href="/single?id=<%= posts[i]._id %>"> <img src="../post_images/<%= posts[i].image %>"> </a>
 
-            <img src="img/gallery/news-1.jpg" alt="Image">
-
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin tristique tellus in est vulputate luctus fermentum ipsum molestie.</p>
-
-            <img src="img/gallery/news-2.jpg" alt="Image">
-
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin tristique tellus in est vulputate luctus fermentum ipsum molestie.</p>
-
-            <img src="img/gallery/news-3.jpg" alt="Image">
-
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin tristique tellus in est vulputate luctus fermentum ipsum molestie.</p>
+                    <p class="lead"><%= posts[i].content %></p>
+            <% } %>
 
             <div class="row">
                 <div class="span3">
@@ -83,17 +76,23 @@
         <div class="span3 sidebar page-right-sidebar"><!-- Begin sidebar column -->
 
             <!--User Login-->
-            <h5 class="title-bg">User Login</h5>
-            <div class="input-prepend">
-                <span class="add-on"><i class="icon-user"></i></span><input class="span2" id="prependedInput" size="16" type="text" placeholder="Username">
-            </div>
-            <div class="input-prepend">
-                <span class="add-on"><i class="icon-lock"></i></span><input class="span2" id="appendedPrependedInput" size="16" type="text" placeholder="Password">
-            </div>
-            <button class="btn btn-small btn-inverse" type="button">Логин</button>
-            <button class="btn btn-small btn-inverse" type="button">Регистрация</button>
-
-             <!--Tabbed Content-->
+            <% if(user) { %>
+                <h5 class="title-bg"><a class="color_black" href="/profile?id=<%= user._id %>"><%= user.login %></a></h5>
+            <% } else { %>
+                <h5 class="title-bg">User Login</h5>
+                <form action="/login" method="post">
+                    <div class="input-prepend">
+                        <span class="add-on"><i class="icon-user"></i></span><input name="login" class="span2" id="prependedInput" size="16" type="text" placeholder="Username">
+                    </div>
+                    <div class="input-prepend">
+                        <span class="add-on"><i class="icon-lock"></i></span><input name="password" class="span2" id="appendedPrependedInput" size="16" type="text" placeholder="Password">
+                    </div>
+                    <br>
+                    <input class="btn btn-small btn-inverse" type="submit" name="submit" value="кируу">
+                </form>
+                    <a href="/register"><input class="btn btn-small btn-inverse" type="submit" name="submit" value="регистр кируу">
+            <% } %>
+            <!--Tabbed Content-->
             <h5 class="title-bg">More Info</h5>
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#comments" data-toggle="tab">Comments</a></li>

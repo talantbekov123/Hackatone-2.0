@@ -20,7 +20,7 @@ var postSchema = new Schema({
   user_id: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }
+  },
 	views: {
 		type: Number,
 		default: 0,

@@ -77,7 +77,7 @@ module.exports = function(app, db) {
     });
   });
 
-  router.post('/add/like', function(req, res) {
+  router.post('/like', function(req, res) {
     var sympathy = new db.Sympathy({
       user_id: req.cookies.user.get('id'),
       post_id: req.body.post_id,

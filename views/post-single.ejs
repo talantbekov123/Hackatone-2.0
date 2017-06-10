@@ -20,13 +20,13 @@
                         <p><%= post.content %></p>
                     </div>
                     <div class="post-summary-footer">
-                        <% if(sympathy.state == 1) {%>
+                        <% if(sympathy && sympathy.state == 1) {%>
                           <i post_id="<%=post._id%>" class='icon-plus' style="background-color:green;opacity:0.5;"></i>
                         <% } else { %>
                           <i post_id="<%=post._id%>" class='icon-plus'></i>
                         <% } %>
                         <b id="sympathyCount"><%= sympathyCount %></b>
-                        <% if(sympathy.state == -1) {%>
+                        <% if(sympathy && sympathy.state == -1) {%>
                           <i post_id="<%=post._id%>" class='icon-minus' style="background-color:red;opacity:0.5;"></i>
                         <%} else {%>
                         <i  post_id="<%=post._id%>" class='icon-minus'></i>

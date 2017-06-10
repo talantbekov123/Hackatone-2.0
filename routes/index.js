@@ -31,7 +31,15 @@ module.exports = function(app, db) {
 
 	router.get('/single', function(req, res) {
 		db.Post.findOne({ _id: req.query.id }, function(err, post) {
-			res.render('post-single', {post: post});
+      db.Sympathy.findOne({post_id: post._id, user_id: req.cookies.user._id}).exec(function(err, sympathy) {
+        db.Sympathy.count({post_id: post._id, state: 1}).exec(function(err, pos) {
+          db.Sympathy.count({post_id: post._id, state: -1}).exec(function(err, neg) {
+            db.User.findOne({id: post.user_id}).exec(function(err, user) {
+              res.render('post-single', {user: user, post: post, sympathyCount: pos - neg, sympathy: sympathy });
+            })
+          });
+        });
+      });
 		});
 	});
 

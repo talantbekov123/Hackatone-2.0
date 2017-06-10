@@ -4,7 +4,20 @@ $(document).ready(function() {
 var $filterType = $('#filterOptions li.active a').attr('class');
 var $holder = $('ul.holder');
 var $data = $holder.clone();
-
+$('i.icon-plus').click(function(e) {
+    $.post('/posts/like', {state: 1, post_id: $(e.target).attr('post_id')}, function(data, status) {
+    	$('#sympathyCount').text($('#sympathyCount').val() + 1);
+      $('.icon-plus').css({'background-color': 'green', 'opacity': '0.7'});
+      $('.icon-minus').css({'background-color': 'white'});
+    });
+})
+$('i.icon-minus').click(function(e) {
+    $.post('/posts/like', {state: -1, post_id: $(e.target).attr('post_id')}, function(data, status) {
+    	$('#sympathyCount').text($('#sympathyCount').val() - 1);
+      $('.icon-minus').css({'background-color': 'red', 'opacity': '0.7'});
+      $('.icon-plus').css({'background-color': 'white'});
+    });
+})
 $('#filterOptions li a').click(function(e) {
 	
 	$('#filterOptions li').removeClass('active');

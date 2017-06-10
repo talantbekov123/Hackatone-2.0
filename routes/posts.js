@@ -10,7 +10,7 @@ module.exports = function(app, db) {
 
   router.get('/', function(req, res) {
     db.Post.findAll().exec(function(err, posts) {
-      res.render()
+      res.render('')
     })
   })
 
@@ -78,21 +78,36 @@ module.exports = function(app, db) {
   });
 
   router.post('/like', function(req, res) {
-    var sympathy = new db.Sympathy({
-      user_id: req.cookies.user.get('id'),
-      post_id: req.body.post_id,
-      state: req.body.state
-    });
-    sympathy.save(function(err) {
-      if(err) {
-        return res.json({
-          success: false,
-          message: "Ошибка"
+    db.Sympathy.findOne({user_id: req.cookies.user._id, post_id: req.body.post_id})
+    .exec(function(err, sympathy) {
+      if(!sympathy) {
+        var sympathy = new db.Sympathy({
+          user_id: req.cookies.user._id,
+          post_id: req.body.post_id,
+          state: req.body.state
+        });
+        sympathy.save(function(err) {
+          if(err) {
+            return res.json({
+              success: false,
+              message: "Ошибка"
+            })
+          }
+          return res.json({
+            sucess: true,
+            message: "Успешно сохранен"
+          })
         })
       }
-      return res.json({
-        sucess: true,
-        message: "Успешно сохранен"
+      if(sympathy.state == req.body.state) {
+        return res.end();
+      }
+      sympathy.state = req.body.state;
+      sympathy.save(function(err) {
+        res.json({
+          sucess: true,
+          message: "Успешно сохранен"
+        })
       })
     })
   });

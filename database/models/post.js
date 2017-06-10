@@ -14,10 +14,13 @@ var postSchema = new Schema({
 	source: {
 		type: String
 	},
-  user_id: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
-  },
+	content: {
+		type: String
+	},
+	user_id: {
+		type: Schema.Types.ObjectId,
+		ref: 'User'
+	},
 	views: {
 		type: Number,
 		default: 0,
@@ -27,6 +30,10 @@ var postSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'Tag'
 	}],
+	axilary_date: {
+		type: String,
+		required: true
+	}
 }, {
 	timestamps: {
 		createdAt: 'created_at',

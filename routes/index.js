@@ -37,7 +37,8 @@ module.exports = function(app, db) {
 						db.Sympathy.count({post_id: post._id, state: -1}).exec(function(err, neg) {
 							db.User.findOne({id: post.user_id}).exec(function(err, user) {
 								post.views = post.views + 1;
-              					post.save(function() {
+              					post.save(function(err) {
+              						console.log(post)
 									res.render('post-single', {comments: comments, user: user, post: post, sympathyCount: pos - neg, sympathy: sympathy });
 								});
 							})

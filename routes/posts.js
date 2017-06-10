@@ -44,8 +44,15 @@ module.exports = function(app, db) {
         about: req.body.about,
         image: req.files[0].filename,
         source: req.body.source,
-        content: req.body.content,
-        tags: ids
+        content: req.body.text,
+        tags: ids,
+        axilary_date: new Date().toLocaleString('ru', {
+          month: 'long',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          year: 'numeric'
+        })
       });
 
       post.save(function(err, post) {

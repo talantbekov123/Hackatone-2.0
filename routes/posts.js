@@ -166,7 +166,6 @@ module.exports = function(app, db) {
           })
         })
       } else {
-        console.log('cheeck');
         if(sympathy.state == req.body.state) {
           return res.json({
             sucess: true,

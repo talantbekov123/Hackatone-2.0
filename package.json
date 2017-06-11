@@ -19,6 +19,7 @@
     "passport-facebook": "^2.1.1",
     "request": "^2.81.0",
     "static-favicon": "~1.0.0",
-    "utf8": "^2.1.2"
+    "utf8": "^2.1.2",
+    "yandex-translate": "^2.1.1"
   }
 }

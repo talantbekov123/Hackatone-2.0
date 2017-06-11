@@ -18,6 +18,9 @@
 
                     <div class="post-body">
                         <p><%= post.content %></p>
+                        <%if(post.status == 0) {%>
+                            <p><%=post.translatedContent %></p>
+                        <% } %>
                     </div>
                     <div class="post-summary-footer">
                     <% if(authorized) {%>

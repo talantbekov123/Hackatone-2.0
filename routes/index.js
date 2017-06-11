@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var KEY="trnsl.1.1.20160909T080552Z.6397520b54ae76f0.f4a12b6e4be89d263299ec70a175f538c276d914";
+var translate = require('yandex-translate')(KEY);
 
 module.exports = function(app, db) {
 
@@ -51,10 +53,12 @@ module.exports = function(app, db) {
 						db.Sympathy.count({post_id: post._id, state: -1}).exec(function(err, neg) {
 							db.User.findOne({id: post.user_id}).exec(function(err, user) {
 								post.views = post.views + 1;
-        					post.save(function(err) {
-        						console.log(post)
-									res.render('post-single', {comments: comments, postUser: user, post: post, sympathyCount: pos - neg, sympathy: sympathy });
-								});
+      					post.save(function(err) {
+                  translate.translate(post.content,{from: "en", to: "ky"}).then(function(err, res) {
+                    post.translatedContent = res.text[0];
+                    res.render('post-single', {comments: comments, postUser: user, post: post, sympathyCount: pos - neg, sympathy: sympathy });
+                  })
+							  });
 							})
 						});
 					});

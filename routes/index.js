@@ -11,6 +11,18 @@ module.exports = function(app, db) {
     });
   });
 
+  router.get('/contacts', function(req, res) {
+    db.Post.find({}, function(err, posts) {
+      res.render('contacts', {user: req.cookies.user, posts: posts});
+    });
+  });
+
+  router.get('/infodata', function(req, res) {
+    db.Post.find({}, function(err, posts) {
+      res.render('infodata', {user: req.cookies.user, posts: posts});
+    });
+  });
+
   
   router.get('/untranslated', function(req, res) {
       db.Post.find({status: -1}).exec(function(err, posts) {

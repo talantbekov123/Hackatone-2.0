@@ -1,0 +1,81 @@
+
+<%- include header.ejs %>
+
+     
+    <!-- Page Content
+    ================================================== --> 
+    <div class="row"><!--Container row-->
+
+    <!-- Title Header -->
+        <div class="span8"><!--Begin page content column-->
+
+
+        
+            <h2> Котормону баштоо оңой</h2>
+            <br>
+            <img src="./img/infodata.jpg">
+            <br>
+            <br>
+
+            <br>
+
+            <br>
+
+
+            <h3>Урматтуу колдонуучу, биздин коомчулукка кошулганыныз үчүн рахмат! Сиздин салымыныз долбоорубуздун өнүгүүсүнө жардам берет жана өзүнүздүн да кесиптик жана жеке өнүгүүнүзгө түрткү болот деп үмүттөнөбүз.
+            <br> <br> Чогуу иштешип биз бүткүл Кыргызстан үчүн сапаттуу контентти түзүп тартуулайбыз!</h3>
+
+        </div> <!--End page content column-->
+
+        <!-- Blog Sidebar
+        ================================================== --> 
+        <div class="span4 sidebar page-sidebar"><!-- Begin sidebar column -->
+
+           
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#comments" data-toggle="tab">Которуу үчүн</a></li>
+                <li><a href="#about" data-toggle="tab">Котормочу болуу </a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="comments">
+                     <ul>
+                        <% for(var i = posts.length - 1; i >= 0; i--) { %>
+                            <% if(posts[i].status == -1) { %>
+                                <li><i class="icon-comment"></i> <a href="/single?id=<%= posts[i]._id %>"><%= posts[i].title %></a></li>
+                            <% } %>
+                        <% } %>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="about">
+                    <p>Сапаттуу котормо даярдоо үчүн төмөнкү кадамадарды аткаруу зарыл:
+                    <br><br>
+- Көнүлгө жараша татыктуу макаланы тандоо <br>
+- Жеке кабинетте онлайн куралдын жардамы менен которууну баштоо  <br>
+- Котормону порталдын редакторуна бир заматта жөнөтүү  <br>
+- өзүнүздүн котормонузду сайтта көрсөнүз болот!  <br>
+- Биздин котормочулардын рейтингдин жогорку орундарына жетип атайын күбөлүк алуу үчүн мезгил-мезгили менен кызыктуу макалалардын котормосун жөнөтүү.  <br>
+                </div>
+            </div>
+
+
+            <!--Latest News-->
+            <h5 class="title-bg">Акыркы жаңылыктар</h5>
+            <% for(var i = 0; i < posts.length; i++) { %>
+                <% if(posts[i].status == 1) { %>
+                    <ul class="popular-posts">
+                        <li>
+                            <img src="../post_images/<%= posts[i].image %>">
+                            <h6><a href="/single?id=<%= posts[i]._id %>"><%= posts[i].about %></a></h6>
+                            <em>Posted on <%= posts[i].axilary_date %></em>
+                        </li>
+                    </ul>
+                <% } %>
+            <% } %>
+
+        </div><!-- End sidebar column -->
+
+    </div><!-- End container row -->
+    
+
+    

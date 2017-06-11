@@ -55,6 +55,8 @@
                     </div>
                 </div>
             </article>
+
+            
             <%if(post.status == 0) {%>
              <article>
                 <form action="/posts/<%=post._id%>/update" id="form" method="post" enctype="multipart/form-data">
@@ -89,7 +91,7 @@
                <% if(authorized) {%>
                 <!-- Comment Form -->
                 <div class="comment-form-container">
-                    <h6>Leave a Comment</h6>
+                    <h6>Комментарий калтыруу</h6>
                     <form method="post" action="posts/add/comment" id="comment-form">
                         <input type="hidden" name="_id" value="<%= post._id %>">
                         <input type="hidden" name="from" value="<%= authorized._id %>">
@@ -104,7 +106,7 @@
                         </textarea>
                         <div class="row">
                             <div class="span2">
-                                <input type="submit" class="btn btn-inverse" value="Отправить">
+                                <input type="submit" class="btn btn-inverse" value="жөнөтүү">
                             </div>
                         </div>
                     </form>

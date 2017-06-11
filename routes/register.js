@@ -26,6 +26,7 @@ module.exports = function(app, db) {
 		    		var instance = new db.User({
 		    			firstname: profile._json.first_name,
 		    			lastname: profile._json.last_name,
+		    			login: profile._json.first_name,
 		    			fb_id: profile._json.id
 					});
 					instance.save(function(err, user) {

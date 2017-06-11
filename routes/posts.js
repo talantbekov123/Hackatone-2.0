@@ -8,14 +8,10 @@ const fs = require('fs');
 module.exports = function(app, db) {
   
 
-  router.get('/', function(req, res) {
-    db.Post.findAll().exec(function(err, posts) {
-      res.render('')
-    })
-  })
-
   router.get('/add', function(req, res) {
-    res.render('post-add', {});
+    db.Post.find({}).exec(function(err, posts) {
+      res.render('post-add', {posts: posts});
+    });
   });
 
   router.post('/add', upload.any(), function(req, res) {

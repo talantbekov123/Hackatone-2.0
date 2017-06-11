@@ -49,7 +49,9 @@ module.exports = function(app, db) {
 
 	router.get('/', function(req, res) {
 		db.Post.find({}, function (err, posts) {
+			console.log(posts);
 			res.render('register', { user: req.cookies.user, posts: posts });
+
 		});
 	});
 

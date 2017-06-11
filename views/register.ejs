@@ -33,7 +33,6 @@
         <div class="span4 sidebar page-sidebar"><!-- Begin sidebar column -->
 
             <!--Tabbed Content-->
-            <h5 class="title-bg">More Info</h5>
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#comments" data-toggle="tab">Статьи для перевода</a></li>
                 <li><a href="#about" data-toggle="tab">О переводах</a></li>
@@ -41,13 +40,13 @@
 
             <div class="tab-content">
                 <div class="tab-pane active" id="comments">
-                     <ul>
-                        <li><i class="icon-comment"></i>admin on <a href="#">Lorem ipsum dolor sit amet</a></li>
-                        <li><i class="icon-comment"></i>admin on <a href="#">Consectetur adipiscing elit</a></li>
-                        <li><i class="icon-comment"></i>admin on <a href="#">Ipsum dolor sit amet consectetur</a></li>
-                        <li><i class="icon-comment"></i>admin on <a href="#">Aadipiscing elit varius elementum</a></li>
-                        <li><i class="icon-comment"></i>admin on <a href="#">ulla iaculis mattis lorem</a></li>
-                    </ul>
+                    <% for(var i = 0; i < posts.length; i++) { %>
+                        <ul>
+                        <% if(posts[i].status == -1) { %>
+                            <li><i class="icon-comment"></i> <a href="/single?id=<%= posts[i]._id %>"><%= posts[i].title %></a></li>
+                        <% } %>
+                        </ul>
+                    <% } %>
                 </div>
                 <div class="tab-pane" id="tweets">
                     <ul>
@@ -69,13 +68,15 @@
             <!--Latest News-->
             <h5 class="title-bg">Latest News</h5>
             <% for(var i = 0; i < posts.length; i++) { %>
-                <ul class="popular-posts">
-                    <li>
-                        <a href="/single?id=<%= posts[i]._id %>"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-                        <h6><a href="/single?id=<%= posts[i]._id %>"><%= posts[i].about %></a></h6>
-                        <em>Posted on <%= posts[i].axilary_date %></em>
-                    </li>
-                </ul>
+                <% if(posts[i].status == 1) { %>
+                    <ul class="popular-posts">
+                        <li>
+                            <img src="../post_images/<%= posts[i].image %>">
+                            <h6><a href="/single?id=<%= posts[i]._id %>"><%= posts[i].about %></a></h6>
+                            <em>Posted on <%= posts[i].axilary_date %></em>
+                        </li>
+                    </ul>
+                <% } %>
             <% } %>
 
         </div><!-- End sidebar column -->

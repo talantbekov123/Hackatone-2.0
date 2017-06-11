@@ -12,15 +12,25 @@
             <!-- Blog Post 1 -->
             <article>
                 <form action="/posts/add" id="form" method="post" enctype="multipart/form-data">
+                    <h5><input id="sending-radio" type="radio" name="status" value="-1">Отправить на перевод
+                    <input id="posting-radio" type="radio" name="status" value="1">Перевести самому</h5>
+                    <div id="sending" style="display: none;">
+                        <input type="text" name="title" placeholder="Title">
+                        <input type="text" name="source" placeholder="Source">
+                        <input type="text" name="about" placeholder="About">
+                        Картинка <input type="file" name="img" accept="image/*">
+                    </div>
+                    <div id="posting" style="display: none;">
+                    <div class="post-content">
                     <input type="text" name="title" placeholder="Title">
                     <input type="text" name="about" placeholder="About">
-
-                    <div class="post-content">
                         Картинка <input type="file" name="img" accept="image/*">
                     </div>
                     <input type="text" name="tags" placeholder="теги для поста"><br>
                     <textarea class="myTextarea" name="text" form="form" placeholder="текст поста"> </textarea>
+                    </div>
                     <input type="submit" name="submit"> <br>
+
                 </form>
                 
 

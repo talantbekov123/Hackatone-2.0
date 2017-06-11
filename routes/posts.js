@@ -22,27 +22,30 @@ module.exports = function(app, db) {
     var ids = [];
 
     /* create tags */
-    var tags = req.body.tags.split(",");
-    console.log(tags);
-    tags.forEach(function(tag) {
-      tag = tag.trim();
+    var tags = req.body.tags.split(",") || null;
 
-      /* create tag */
-      var tag_instance = new db.Tag({
-        name: tag
+    if(req.body.tags) {
+      tags.forEach(function(tag) {
+        tag = tag.trim();
+
+        /* create tag */
+        var tag_instance = new db.Tag({
+          name: tag
+        });
+
+        tag_instance.save(function(err, elem) {
+          ids.push(elem._id);
+        });
       });
-
-      tag_instance.save(function(err, elem) {
-        ids.push(elem._id);
-      });
-    });
-
+    }
+    console.log(req.files);
     setTimeout(function() {
       /* create post */
       var post = new db.Post({
         title: req.body.title,
         about: req.body.about,
-        image: req.files[0].filename,
+        status: req.body.status,
+        image: req.files.length > 0 ? req.files[0].filename : '',
         source: req.body.source,
         content: req.body.content,
         tags: ids
@@ -76,7 +79,15 @@ module.exports = function(app, db) {
       return res.redirect('/posts/single?_id=' + req.body._id);
     });
   });
-
+  router.get('/my/add', function(req, res) {
+    db.User.findOne({_id: req.cookies.user._id}).exec(function(err, user) {
+      user.posts.push(req.query.post_id);
+      user.status = 0;
+      user.save(function(err) {
+        res.redirect('/');
+      })
+    })
+  }) 
   router.post('/like', function(req, res) {
     db.Sympathy.findOne({user_id: req.cookies.user._id, post_id: req.body.post_id})
     .exec(function(err, sympathy) {
@@ -93,22 +104,28 @@ module.exports = function(app, db) {
               message: "Ошибка"
             })
           }
+          console.log("asdasd");
           return res.json({
             sucess: true,
             message: "Успешно сохранен"
           })
         })
-      }
-      if(sympathy.state == req.body.state) {
-        return res.end();
-      }
-      sympathy.state = req.body.state;
-      sympathy.save(function(err) {
-        res.json({
-          sucess: true,
-          message: "Успешно сохранен"
+      } else {
+        console.log('cheeck');
+        if(sympathy.state == req.body.state) {
+          return res.json({
+            sucess: true,
+            message: "exists"
+          });
+        }
+        sympathy.state = req.body.state;
+        sympathy.save(function(err) {
+          res.json({
+            sucess: true,
+            message: 'updated'
+          })
         })
-      })
+    }
     })
   });
 

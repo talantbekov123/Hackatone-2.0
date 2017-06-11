@@ -45,6 +45,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /* Configure database */ 
 var db = require('./database/index')('./database/models/*.js');
+
+var mdHandlers = glob.sync(__dirname + '/middleware/*.js');
+mdHandlers.forEach(function(mdHandler) {
+    require(mdHandler)(app, db);
+});
 /* Configure routes */
 var routes = glob.sync('./routes/*.js');
 
@@ -65,6 +70,7 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
+        console.log(err);
         res.status(err.status || 500);
         res.render('error', {
             message: err.message,
@@ -77,6 +83,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
+    console.log(err);
     res.render('error', {
         message: err.message,
         error: {}

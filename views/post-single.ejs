@@ -20,6 +20,7 @@
                         <p><%= post.content %></p>
                     </div>
                     <div class="post-summary-footer">
+                    <% if(authorized) {%>
                         <% if(sympathy && sympathy.state == 1) {%>
                           <i post_id="<%=post._id%>" class='icon-plus' style="background-color:green;opacity:0.5;"></i>
                         <% } else { %>
@@ -31,9 +32,10 @@
                         <%} else {%>
                         <i  post_id="<%=post._id%>" class='icon-minus'></i>
                         <% } %>
+                    <% } %>
                         <ul class="post-data">
                             <li><i class="icon-calendar"></i> 09/04/15</li>
-                            <li><i class="icon-user"></i> <a href="/profile?id=<%= user._id%>"><%= user.login%></a></li>
+                            <li><i class="icon-user"></i> <a href="/profile?id=<%= postUser._id%>"><%= postUser.login%></a></li>
                             <li><i class="icon-comment"></i> <a href="#">5 Comments</a></li>
                             <li><i class="icon-tags"></i>
                             <% for(var i = 0; i < post.tags.length; i++) {%>
@@ -49,7 +51,7 @@
             <section class="post-content">
                 <div class="post-body about-author">
                     <img src="img/author-avatar.jpg" alt="author">
-                    <h4>About <%= user.login%></h4>
+                    <h4>About <%= postUser.login%></h4>
                 </div>
             </section>
 
@@ -93,7 +95,7 @@
                     </li>
                     
                </ul>
-            
+               <% if(authorized) {%>
                 <!-- Comment Form -->
                 <div class="comment-form-container">
                     <h6>Leave a Comment</h6>
@@ -118,16 +120,17 @@
                         </div>
                     </form>
                 </div>
+              <% } %>
         </section><!-- Close comments section-->
 
         </div><!--Close container row-->
 
         <!-- Blog Sidebar
         ================================================== --> 
-        <div class="span4 sidebar">
+        <div class="span3 sidebar page-right-sidebar">
           <!--User Login-->
-            <% if(user) { %>
-                <h5 class="title-bg"><a class="color_black" href="/profile?id=<%= user._id %>"><%= user.login %></a></h5>
+            <% if(authorized) { %>
+                <h5 class="title-bg"><a class="color_black" href="/profile?id=<%= authorized._id %>"><%= authorized.login %></a></h5>
             <% } else { %>
                 <h5 class="title-bg">User Login</h5>
                 <form action="/login" method="post">

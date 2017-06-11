@@ -27,7 +27,11 @@ var userSchema = new Schema({
 	},
 	password: {
 		type: String
-	}
+	},
+	posts: [{
+		type: Schema.Types.ObjectId,
+		ref: "Post"
+	}]
 }, {
 	timestamps: {
 		createdAt: 'created_at',

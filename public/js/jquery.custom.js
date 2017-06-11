@@ -4,20 +4,42 @@ $(document).ready(function() {
 var $filterType = $('#filterOptions li.active a').attr('class');
 var $holder = $('ul.holder');
 var $data = $holder.clone();
-$('i.icon-plus').click(function(e) {
+$('#posting-radio').click(function(e) {
+	$('#posting').show();
+	$('#sending').hide();
+})
+$('#sending-radio').click(function(e) {
+	$('#sending').show();
+	$('#posting').hide();
+})
+$('div.post-summary-footer').on('click', 'i.icon-plus', function(e) {
     $.post('/posts/like', {state: 1, post_id: $(e.target).attr('post_id')}, function(data, status) {
-    	$('#sympathyCount').text($('#sympathyCount').val() + 1);
+    	if(data.message == 'exists') {
+    		return;
+    	}
+    	if(data.message == 'updated') {
+    		$('#sympathyCount').text(parseInt($('#sympathyCount').text()) + 2);
+    	} else {
+    		$('#sympathyCount').text(parseInt($('#sympathyCount').text()) + 1);
+    	}
       $('.icon-plus').css({'background-color': 'green', 'opacity': '0.7'});
       $('.icon-minus').css({'background-color': 'white'});
     });
-})
-$('i.icon-minus').click(function(e) {
+});
+$('div.post-summary-footer').on('click', 'i.icon-minus', function(e) {
     $.post('/posts/like', {state: -1, post_id: $(e.target).attr('post_id')}, function(data, status) {
-    	$('#sympathyCount').text($('#sympathyCount').val() - 1);
+    	if(data.message == 'exists') {
+    		return;
+    	}
+    	if(data.message == 'updated') {
+    		$('#sympathyCount').text(parseInt($('#sympathyCount').text()) - 2);
+    	} else {
+    		$('#sympathyCount').text(parseInt($('#sympathyCount').text()) - 1);
+    	}
       $('.icon-minus').css({'background-color': 'red', 'opacity': '0.7'});
       $('.icon-plus').css({'background-color': 'white'});
     });
-})
+});
 $('#filterOptions li a').click(function(e) {
 	
 	$('#filterOptions li').removeClass('active');

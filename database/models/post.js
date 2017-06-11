@@ -17,6 +17,10 @@ var postSchema = new Schema({
 	content: {
 		type: String
 	},
+	status: {
+		type: Number,
+		default: 1
+	},
   user_id: {
     type: Schema.Types.ObjectId,
     ref: 'User'

@@ -52,8 +52,12 @@
                     <h2 class="title-bg"><%= posts[i].about %></h2>
 
                     <a href="/single?id=<%= posts[i]._id %>"> <img src="../post_images/<%= posts[i].image %>"> </a>
-
+                    <%if(posts[i].content) {%>
                     <p class="lead"><%= posts[i].content %></p>
+                    <% } %>
+                    <%if(posts[i].status == -1) {%>
+                            <a class="btn btn-mini btn-inverse" href='/posts/my/add?post_id=<%=posts[i]._id%>'>Добавить к себе</a>
+                    <%}%>
             <% } %>
 
             <div class="row">

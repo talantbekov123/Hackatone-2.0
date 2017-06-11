@@ -54,8 +54,8 @@ module.exports = function(app, db) {
 							db.User.findOne({id: post.user_id}).exec(function(err, user) {
 								post.views = post.views + 1;
       					post.save(function(err) {
-                  translate.translate(post.content,{from: "en", to: "ky"}).then(function(err, res) {
-                    post.translatedContent = res.text[0];
+                  translate.translate(post.content,{from: "en", to: "ky"}, function(err, data) {
+                    post.translatedContent = data.text[0];
                     res.render('post-single', {comments: comments, postUser: user, post: post, sympathyCount: pos - neg, sympathy: sympathy });
                   })
 							  });

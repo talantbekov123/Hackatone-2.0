@@ -13,7 +13,7 @@ var app = express();
 // set axilary global variables
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.set('db', 'mongodb://localhost/news18');
+app.set('db', 'mongodb://localhost/news19');
 /* facebook aoth handler */
 passport.use(new FacebookStrategy({
         clientID: '139531513263722',

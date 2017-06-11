@@ -9,16 +9,16 @@
     <!-- Title Header -->
         <div class="span8"><!--Begin page content column-->
 
-            <h2>Профиль</h2>
-            <p class="lead">login: "<%= user.login %>"</p>
-            <p class="lead">login: "<%= user.password %>"</p>
+            <h2>Жеке кабинет</h2>
+            <p class="lead">Логин: "<%= user.login %>"</p>
+            <p class="lead">Пароль: "<%= user.password %>"</p>
 
             
         <div class="span8 blog">
 
             <!-- Blog Post 1 -->
             <article>
-                <h4 class="title-bg">Мои посты</h4>
+                <h4 class="title-bg">Менин котормолорум</h4>
                 <ul>
                  <% for(var i = 0; i < posts.length; i++) { %>
                     <li><a href="/single?id=<%= posts[i]._id %>"><h2 class="title-bg"><%= posts[i].about %></h2></a>
@@ -36,7 +36,9 @@
         <div class="span4 sidebar page-sidebar"><!-- Begin sidebar column -->
 
             <!--Tabbed Content-->
-            <a href="/exit"><h5 class="title-bg color_black">Выйти</h5></a>
+            <a href="/exit"><h5 class="title-bg color_black">Чыгуу</h5></a>
+
+            
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#comments" data-toggle="tab">На перевод</a></li>
                 <li><a href="#about" data-toggle="tab">О переводах</a></li>

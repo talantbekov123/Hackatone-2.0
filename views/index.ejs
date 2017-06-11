@@ -8,10 +8,10 @@
         <div class="span3 sidebar page-left-sidebar"><!-- Begin sidebar column -->
 
             <!--Latest News-->
-            <h5 class="title-bg">Latest News</h5>
+            <h5 class="title-bg">Акыркы жаңылыктар</h5>
             <% for(var i = posts.length - 1; i >= 0; i--) { %>
                 <ul class="popular-posts">
-                    <% if(posts[i].status) { %>
+                    <% if(posts[i].status == 1) { %>
                         <a href="/single?id=<%= posts[i]._id %>">
                             <li>
                                 <img src="../post_images/<%= posts[i].image %>" alt="Popular Post">
@@ -43,18 +43,7 @@
                 </a>
             <% } %>
 
-            <div class="row">
-                <div class="span3">
-                    <h5>2 Column Layout</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin tristique tellus in est vulputate luctus fermentum ipsum molestie. Vivamus tincidunt sem eu magna varius elementum. Maecenas felis tellus, fermentum vitae laoreet vitae, volutpat et urna. Nulla faucibus ligula eget ante varius ac euismod odio placerat. Nam sit amet felis non lorem faucibus rhoncus vitae id dui.</p>
-                    <button class="btn btn-mini btn-inverse" type="button">Read more</button>
-                </div>
-                <div class="span3">
-                    <h5>2 Column Layout</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin tristique tellus in est vulputate luctus fermentum ipsum molestie. Vivamus tincidunt sem eu magna varius elementum. Maecenas felis tellus, fermentum vitae laoreet vitae, volutpat et urna. Nulla faucibus ligula eget ante varius ac euismod odio placerat. Nam sit amet felis non lorem faucibus rhoncus vitae id dui.</p>
-                    <button class="btn btn-mini btn-inverse" type="button">Read more</button>
-                </div>
-            </div>
+            
 
         </div> <!--End page content column--> 
 
@@ -81,8 +70,8 @@
             <% } %>
             <!--Tabbed Content-->
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#comments" data-toggle="tab">На перевод</a></li>
-                <li><a href="#about" data-toggle="tab">О переводах</a></li>
+                <li class="active"><a href="#comments" data-toggle="tab">Которуу үчүн</a></li>
+                <li><a href="#about" data-toggle="tab">Котормочу болуу </a></li>
             </ul>
 
             <div class="tab-content">
@@ -96,9 +85,13 @@
                     </ul>
                 </div>
                 <div class="tab-pane" id="about">
-                    <p>Enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.</p>
-
-                    Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+                    <p>Сапаттуу котормо даярдоо үчүн төмөнкү кадамадарды аткаруу зарыл:
+                    <br><br>
+- Көнүлгө жараша татыктуу макаланы тандоо <br>
+- Жеке кабинетте онлайн куралдын жардамы менен которууну баштоо  <br>
+- Котормону порталдын редакторуна бир заматта жөнөтүү  <br>
+- өзүнүздүн котормонузду сайтта көрсөнүз болот!  <br>
+- Биздин котормочулардын рейтингдин жогорку орундарына жетип атайын күбөлүк алуу үчүн мезгил-мезгили менен кызыктуу макалалардын котормосун жөнөтүү.  <br>
                 </div>
             </div>
         </div><!-- End sidebar column -->

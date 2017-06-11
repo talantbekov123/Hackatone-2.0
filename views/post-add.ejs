@@ -12,17 +12,17 @@
             <!-- Blog Post 1 -->
             <article>
                 <form action="/posts/add" id="form" method="post" enctype="multipart/form-data">
-                    <h5><input id="sending-radio" type="radio" name="status" value="-1">Отправить на перевод
-                    <input id="posting-radio" type="radio" name="status" value="1">Перевести самому</h5>
+                    <h5><input id="sending-radio" type="radio" name="status" value="-1">Которуга жөнөтүү
+                    <input id="posting-radio" type="radio" name="status" value="1">Которуу</h5>
                     
                     <div class="post-content">
-                    <input type="text" name="title" placeholder="Title">
-                    <input type="text" name="about" placeholder="About">
-                        Картинка <input type="file" name="img" accept="image/*">
-                    <input type="text" name="tags" placeholder="теги для поста"><br>
+                    <input type="text" name="title" placeholder="Аталышы">
+                    <input type="text" name="about" placeholder="Макала жөнүндө">
+                        Сүрөт <input type="file" name="img" accept="image/*">
+                    <input type="text" name="tags" placeholder="тегтер"><br>
                     <textarea class="myTextarea" name="text" form="form" placeholder="текст поста"> </textarea>
                     </div>
-                    <input type="submit" name="submit"> <br>
+                    <input type="submit" name="submit" value="жөнөтүү"> <br>
 
                 </form>
                 
@@ -39,39 +39,34 @@
 
             <!--Tabbed Content-->
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#comments" data-toggle="tab">Статьи для перевода</a></li>
-                <li><a href="#about" data-toggle="tab">О переводах</a></li>
+                <li class="active"><a href="#comments" data-toggle="tab">Которуу үчүн</a></li>
+                <li><a href="#about" data-toggle="tab">Котормочу болуу </a></li>
             </ul>
 
             <div class="tab-content">
                 <div class="tab-pane active" id="comments">
-                    <% for(var i = 0; i < posts.length; i++) { %>
-                        <ul>
-                        <% if(posts[i].status == -1) { %>
-                            <li><i class="icon-comment"></i> <a href="/single?id=<%= posts[i]._id %>"><%= posts[i].title %></a></li>
+                     <ul>
+                        <% for(var i = posts.length - 1; i >= 0; i--) { %>
+                            <% if(posts[i].status == -1) { %>
+                                <li><i class="icon-comment"></i> <a href="/single?id=<%= posts[i]._id %>"><%= posts[i].title %></a></li>
+                            <% } %>
                         <% } %>
-                        </ul>
-                    <% } %>
-                </div>
-                <div class="tab-pane" id="tweets">
-                    <ul>
-                        <li><a href="#"><i class="icon-share-alt"></i>@room122</a> Vivamus tincidunt sem eu magna varius elementum. Maecenas felis tellus, fermentum vitae laoreet vitae, volutpat et urna.</li>
-                        <li><a href="#"> <i class="icon-share-alt"></i>@room122</a> Nulla faucibus ligula eget ante varius ac euismod odio placerat.</li>
-                        <li><a href="#"> <i class="icon-share-alt"></i>@room122</a> Pellentesque iaculis lacinia leo. Donec suscipit, lectus et hendrerit posuere, dui nisi porta risus, eget adipiscing</li>
-                        <li><a href="#"> <i class="icon-share-alt"></i>@room122</a> Vivamus augue nulla, vestibulum ac ultrices posuere, vehicula ac arcu.</li>
-                        <li><a href="#"> <i class="icon-share-alt"></i>@room122</a> Sed ac neque nec leo condimentum rhoncus. Nunc dapibus odio et lacus.</li>
                     </ul>
                 </div>
                 <div class="tab-pane" id="about">
-                    <p>Enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.</p>
-
-                    Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+                    <p>Сапаттуу котормо даярдоо үчүн төмөнкү кадамадарды аткаруу зарыл:
+                    <br><br>
+- Көнүлгө жараша татыктуу макаланы тандоо <br>
+- Жеке кабинетте онлайн куралдын жардамы менен которууну баштоо  <br>
+- Котормону порталдын редакторуна бир заматта жөнөтүү  <br>
+- өзүнүздүн котормонузду сайтта көрсөнүз болот!  <br>
+- Биздин котормочулардын рейтингдин жогорку орундарына жетип атайын күбөлүк алуу үчүн мезгил-мезгили менен кызыктуу макалалардын котормосун жөнөтүү.  <br>
                 </div>
             </div>
 
 
             <!--Latest News-->
-            <h5 class="title-bg">Latest News</h5>
+            <h5 class="title-bg">Акыркы жаңылыктар</h5>
             <% for(var i = 0; i < posts.length; i++) { %>
                 <% if(posts[i].status == 1) { %>
                     <ul class="popular-posts">

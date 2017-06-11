@@ -135,7 +135,7 @@ module.exports = function(app, db) {
   router.get('/my/add', function(req, res) {
     db.User.findOne({_id: req.cookies.user._id}).exec(function(err, user) {
       user.posts.push(req.query.post_id);
-      db.Post.update({id: req.query.post_id}, {status: 0}, function(err) {
+      db.Post.update({_id: req.query.post_id}, {status: 0}, function(err) {
         user.save(function(err) {
           res.redirect('/');
         })

@@ -5781,3 +5781,8 @@ a.badge:hover {
 .color_black {
   color: black;
 }
+
+
+.color_black:hover {
+  color: black;
+} 

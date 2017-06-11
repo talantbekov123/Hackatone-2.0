@@ -11,11 +11,13 @@
             <h5 class="title-bg">Latest News</h5>
             <% for(var i = 0; i < posts.length; i++) { %>
                 <ul class="popular-posts">
-                    <li>
-                        <a href="/single?id=<%= posts[i]._id %>"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-                        <h6><a href="/single?id=<%= posts[i]._id %>"><%= posts[i].about %></a></h6>
-                        <em>Posted on <%= posts[i].axilary_date %></em>
-                    </li>
+                    <a href="/single?id=<%= posts[i]._id %>">
+                        <li>
+                            <img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post">
+                            <h6><a href="/single?id=<%= posts[i]._id %>"><%= posts[i].about %></a></h6>
+                            <em>Posted on <%= posts[i].axilary_date %></em>
+                        </li>
+                    </a>
                 </ul>
             <% } %>
             
@@ -26,11 +28,13 @@
         ================================================== --> 
         <div class="span6"><!--Begin page content column-->
             <% for(var i = 0; i < posts.length; i++) { %>
-                    <h2 class="title-bg"><%= posts[i].about %></h2>
+                    <a class="color_black" href="/single?id=<%= posts[i]._id %>">
+                        <h2 class="title-bg"><%= posts[i].about %></h2>
 
-                    <a href="/single?id=<%= posts[i]._id %>"> <img src="../post_images/<%= posts[i].image %>"> </a>
+                        <img src="../post_images/<%= posts[i].image %>"> 
 
-                    <p class="lead"><%= posts[i].content %> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin</p>
+                        <p class="lead"><%= posts[i].content %> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin</p>
+                    </a>
             <% } %>
 
             <div class="row">

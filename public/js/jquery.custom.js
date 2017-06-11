@@ -4,14 +4,7 @@ $(document).ready(function() {
 var $filterType = $('#filterOptions li.active a').attr('class');
 var $holder = $('ul.holder');
 var $data = $holder.clone();
-$('#posting-radio').click(function(e) {
-	$('#posting').show();
-	$('#sending').hide();
-})
-$('#sending-radio').click(function(e) {
-	$('#sending').show();
-	$('#posting').hide();
-})
+
 $('div.post-summary-footer').on('click', 'i.icon-plus', function(e) {
     $.post('/posts/like', {state: 1, post_id: $(e.target).attr('post_id')}, function(data, status) {
     	if(data.message == 'exists') {

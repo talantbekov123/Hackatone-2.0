@@ -42,6 +42,11 @@
                             <a href="#"><%= post.tags[i].name %></a>
                             <% } %>
                             </li>
+                            <li>
+                                 <%if(post.status == -1) {%>
+                            <a class="btn btn-mini btn-inverse" href='/posts/my/add?post_id=<%=post._id%>'>Добавить к себе</a>
+                    <%}%>
+                            </li>
                         </ul>
                     </div>
                 </div>

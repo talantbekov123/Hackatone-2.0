@@ -46,6 +46,7 @@ module.exports = function(app, db) {
         
           post.title = req.body.title,
           post.about = req.body.about,
+          post.status = 1,
           post.image = req.files.length > 0 ? req.files[0].filename : '',
           post.source = req.body.source,
           post.content = req.body.text,

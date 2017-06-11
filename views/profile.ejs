@@ -23,7 +23,7 @@
                  <% for(var i = 0; i < posts.length; i++) { %>
                     <li><a href="/single?id=<%= posts[i]._id %>"><h2 class="title-bg"><%= posts[i].about %></h2></a>
                     <%if(posts[i].content) {%>
-                    <p class="lead"><%= posts[i].content %></p>
+                        <p class="lead"><%= posts[i].content %></p>
                     <% } %></li>
                 <% } %>
                 </ul>
@@ -38,28 +38,18 @@
             <!--Tabbed Content-->
             <a href="/exit"><h5 class="title-bg color_black">Выйти</h5></a>
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#comments" data-toggle="tab">Comments</a></li>
-                <li><a href="#tweets" data-toggle="tab">Tweets</a></li>
-                <li><a href="#about" data-toggle="tab">About</a></li>
+                <li class="active"><a href="#comments" data-toggle="tab">На перевод</a></li>
+                <li><a href="#about" data-toggle="tab">О переводах</a></li>
             </ul>
 
-            <div class="tab-content">
+             <div class="tab-content">
                 <div class="tab-pane active" id="comments">
                      <ul>
-                        <li><i class="icon-comment"></i>admin on <a href="#">Lorem ipsum dolor sit amet</a></li>
-                        <li><i class="icon-comment"></i>admin on <a href="#">Consectetur adipiscing elit</a></li>
-                        <li><i class="icon-comment"></i>admin on <a href="#">Ipsum dolor sit amet consectetur</a></li>
-                        <li><i class="icon-comment"></i>admin on <a href="#">Aadipiscing elit varius elementum</a></li>
-                        <li><i class="icon-comment"></i>admin on <a href="#">ulla iaculis mattis lorem</a></li>
-                    </ul>
-                </div>
-                <div class="tab-pane" id="tweets">
-                    <ul>
-                        <li><a href="#"><i class="icon-share-alt"></i>@room122</a> Vivamus tincidunt sem eu magna varius elementum. Maecenas felis tellus, fermentum vitae laoreet vitae, volutpat et urna.</li>
-                        <li><a href="#"> <i class="icon-share-alt"></i>@room122</a> Nulla faucibus ligula eget ante varius ac euismod odio placerat.</li>
-                        <li><a href="#"> <i class="icon-share-alt"></i>@room122</a> Pellentesque iaculis lacinia leo. Donec suscipit, lectus et hendrerit posuere, dui nisi porta risus, eget adipiscing</li>
-                        <li><a href="#"> <i class="icon-share-alt"></i>@room122</a> Vivamus augue nulla, vestibulum ac ultrices posuere, vehicula ac arcu.</li>
-                        <li><a href="#"> <i class="icon-share-alt"></i>@room122</a> Sed ac neque nec leo condimentum rhoncus. Nunc dapibus odio et lacus.</li>
+                        <% for(var i = allPosts.length - 1; i >= 0; i--) { %>
+                            <% if(allPosts[i].status == -1) { %>
+                                <li><i class="icon-comment"></i> <a href="/single?id=<%= allPosts[i]._id %>"><%= allPosts[i].title %></a></li>
+                            <% } %>
+                        <% } %>
                     </ul>
                 </div>
                 <div class="tab-pane" id="about">
@@ -69,35 +59,9 @@
                 </div>
             </div>
 
-            <!--Testimonials-->
-            <h5 class="title-bg">Testimonials</h5>
-    
-            <p class="quote-text side">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Morbi blandit ultricies ultrices. Vivamus nec lectus sed orci molestie molestie."<cite>- Client Name, Big Company</cite></p>
-        
-            <p class="quote-text side">"Adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Morbi blandit ultricies ultrices. Vivamus nec lectus sed orci molestie molestie."<cite>- Another Client Name, Big Company</cite></p>
-
-            <!--Latest News-->
-            <h5 class="title-bg">Latest News</h5>
-            <ul class="popular-posts">
-                <li>
-                    <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-                    <h6><a href="#">Lorem ipsum dolor sit amet consectetur adipiscing elit</a></h6>
-                    <em>Posted on 09/01/15</em>
-                </li>
-                <li>
-                    <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-                    <h6><a href="#">Nulla iaculis mattis lorem, quis gravida nunc iaculis</a></h6>
-                    <em>Posted on 09/01/15</em>
-                <li>
-                    <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-                    <h6><a href="#">Vivamus tincidunt sem eu magna varius elementum maecenas felis</a></h6>
-                    <em>Posted on 09/01/15</em>
-                </li>
-            </ul>
 
         </div><!-- End sidebar column -->
 
     </div><!-- End container row -->
-    
-<%- include footer.ejs %>
+
     

@@ -11,13 +11,15 @@
             <h5 class="title-bg">Latest News</h5>
             <% for(var i = posts.length - 1; i >= 0; i--) { %>
                 <ul class="popular-posts">
-                    <a href="/single?id=<%= posts[i]._id %>">
-                        <li>
-                            <img src="../post_images/<%= posts[i].image %>" alt="Popular Post">
-                            <h6><a href="/single?id=<%= posts[i]._id %>"><%= posts[i].about %></a></h6>
-                            <em>Posted on <%= posts[i].axilary_date %></em>
-                        </li>
-                    </a>
+                    <% if(posts[i].status) { %>
+                        <a href="/single?id=<%= posts[i]._id %>">
+                            <li>
+                                <img src="../post_images/<%= posts[i].image %>" alt="Popular Post">
+                                <h6><a href="/single?id=<%= posts[i]._id %>"><%= posts[i].about %></a></h6>
+                                <em>Posted on <%= posts[i].axilary_date %></em>
+                            </li>
+                        </a>
+                    <% } %>
                 </ul>
             <% } %>
             
@@ -28,17 +30,17 @@
         ================================================== --> 
         <div class="span6"><!--Begin page content column-->
             <% for(var i = 0; i < posts.length; i++) { %>
-                    <a class="color_black" href="/single?id=<%= posts[i]._id %>">
-                        <h2 class="title-bg"><%= posts[i].title %></h2>
-                    <a href="/single?id=<%= posts[i]._id %>"> <img src="../post_images/<%= posts[i].image %>"> </a>
-                    <%if(posts[i].content) {%>
-                    <p class="lead"><%= posts[i].content %></p>
-                    <% } %>
-                    <%if(posts[i].status == -1) {%>
-                            <a class="btn btn-mini btn-inverse" href='/posts/my/add?post_id=<%=posts[i]._id%>'>Добавить к себе</a>
-                    <%}%>
-                        <p class="lead"><%= posts[i].about %> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin</p>
-                    </a>
+                <a class="color_black" href="/single?id=<%= posts[i]._id %>">
+                    <h2 class="title-bg"><%= posts[i].title %></h2>
+                <a href="/single?id=<%= posts[i]._id %>"> <img src="../post_images/<%= posts[i].image %>"> </a>
+                <%if(posts[i].content) {%>
+                <p class="lead"><%= posts[i].content %></p>
+                <% } %>
+                <%if(posts[i].status == -1) {%>
+                        <a class="btn btn-mini btn-inverse" href='/posts/my/add?post_id=<%=posts[i]._id%>'>Добавить к себе</a>
+                <%}%>
+                    <p class="lead"><%= posts[i].about %> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin</p>
+                </a>
             <% } %>
 
             <div class="row">
@@ -78,7 +80,6 @@
                     <a href="/register"><input class="btn btn-small btn-inverse" type="submit" name="submit" value="регистр кируу">
             <% } %>
             <!--Tabbed Content-->
-            <h5 class="title-bg">More Info</h5>
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#comments" data-toggle="tab">На перевод</a></li>
                 <li><a href="#about" data-toggle="tab">О переводах</a></li>
@@ -87,20 +88,11 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="comments">
                      <ul>
-                        <li><i class="icon-comment"></i>admin on <a href="#">Lorem ipsum dolor sit amet</a></li>
-                        <li><i class="icon-comment"></i>admin on <a href="#">Consectetur adipiscing elit</a></li>
-                        <li><i class="icon-comment"></i>admin on <a href="#">Ipsum dolor sit amet consectetur</a></li>
-                        <li><i class="icon-comment"></i>admin on <a href="#">Aadipiscing elit varius elementum</a></li>
-                        <li><i class="icon-comment"></i>admin on <a href="#">ulla iaculis mattis lorem</a></li>
-                    </ul>
-                </div>
-                <div class="tab-pane" id="tweets">
-                    <ul>
-                        <li><a href="#"><i class="icon-share-alt"></i>@room122</a> Vivamus tincidunt sem eu magna varius elementum. Maecenas felis tellus, fermentum vitae laoreet vitae, volutpat et urna.</li>
-                        <li><a href="#"> <i class="icon-share-alt"></i>@room122</a> Nulla faucibus ligula eget ante varius ac euismod odio placerat.</li>
-                        <li><a href="#"> <i class="icon-share-alt"></i>@room122</a> Pellentesque iaculis lacinia leo. Donec suscipit, lectus et hendrerit posuere, dui nisi porta risus, eget adipiscing</li>
-                        <li><a href="#"> <i class="icon-share-alt"></i>@room122</a> Vivamus augue nulla, vestibulum ac ultrices posuere, vehicula ac arcu.</li>
-                        <li><a href="#"> <i class="icon-share-alt"></i>@room122</a> Sed ac neque nec leo condimentum rhoncus. Nunc dapibus odio et lacus.</li>
+                        <% for(var i = posts.length - 1; i >= 0; i--) { %>
+                            <% if(posts[i].status == -1) { %>
+                                <li><i class="icon-comment"></i> <a href="/single?id=<%= posts[i]._id %>"><%= posts[i].title %></a></li>
+                            <% } %>
+                        <% } %>
                     </ul>
                 </div>
                 <div class="tab-pane" id="about">
@@ -109,22 +101,6 @@
                     Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
                 </div>
             </div>
-
-            <!--Progress Bars-->
-            <h5 class="title-bg">Progress Bars</h5> 
-            <div class="progress progress-info progress-striped">
-                <div class="bar" style="width: 20%"></div>
-            </div>
-            <div class="progress progress-success progress-striped">
-                <div class="bar" style="width: 40%"></div>
-            </div>
-            <div class="progress progress-warning progress-striped">
-                <div class="bar" style="width: 60%"></div>
-            </div>
-            <div class="progress progress-danger progress-striped">
-                <div class="bar" style="width: 80%"></div>
-            </div>
-
         </div><!-- End sidebar column -->
 
     </div><!-- End container row -->

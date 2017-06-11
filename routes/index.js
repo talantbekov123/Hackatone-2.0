@@ -9,14 +9,21 @@ module.exports = function(app, db) {
 		});
 	});
 
+	router.get('/exit', function(req, res) {
+		res.cookie('user', null, { maxAge: 0, httpOnly: true });
+		return res.redirect('/');
+	});
+
 	router.post('/login', function(req, res) {
 		db.User.findOne({ login: req.body.login, password: req.body.password  }, function (err, user) {
 			if(user == null) {
-				res.render('/', { message: 'Не верный логин или пароль.' });
-			}
-			else {
+				db.Post.find({}, function (err, posts) {
+					console.log('xxx');
+					console.log(posts);
+					res.render('login', {message:"Не верный логин или пароль, попробуйте заново", posts: posts});
+				});
+			} else {
 				res.cookie('user', user );
-				console.log(user);
 				return res.redirect('/');
 			}
 		});

@@ -46,6 +46,22 @@
                     </div>
                 </div>
             </article>
+            <%if(post.status == 0) {%>
+             <article>
+                <form action="/posts/<%=post._id%>/update" id="form" method="post" enctype="multipart/form-data">
+                
+                    <input type="text" name="title" >
+                    <input type="text" name="about" >
+                        Картинка <input type="file" name="img" accept="image/*">
+                    <input type="text" name="tags" placeholder="теги для поста"><br>
+                    <textarea class="myTextarea" name="text" form="form" placeholder="текст поста"> </textarea>
+                    
+                    <input type="submit" name="submit"> <br>
+
+                </form>
+                   
+            </article>
+           <% } %>
 
             <!-- About the Author -->
             <section class="post-content">

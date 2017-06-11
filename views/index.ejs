@@ -30,8 +30,6 @@
             <% for(var i = 0; i < posts.length; i++) { %>
                     <a class="color_black" href="/single?id=<%= posts[i]._id %>">
                         <h2 class="title-bg"><%= posts[i].title %></h2>
-
-<<<<<<< HEAD
                     <a href="/single?id=<%= posts[i]._id %>"> <img src="../post_images/<%= posts[i].image %>"> </a>
                     <%if(posts[i].content) {%>
                     <p class="lead"><%= posts[i].content %></p>
@@ -39,12 +37,8 @@
                     <%if(posts[i].status == -1) {%>
                             <a class="btn btn-mini btn-inverse" href='/posts/my/add?post_id=<%=posts[i]._id%>'>Добавить к себе</a>
                     <%}%>
-=======
-                        <img src="../post_images/<%= posts[i].image %>"> 
-
                         <p class="lead"><%= posts[i].about %> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin</p>
                     </a>
->>>>>>> 7ded0e1e47be1b5fd9a9d1a387ab657fb6e172b1
             <% } %>
 
             <div class="row">

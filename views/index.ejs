@@ -7,41 +7,20 @@
         ================================================== --> 
         <div class="span3 sidebar page-left-sidebar"><!-- Begin sidebar column -->
 
-            <!--Navigation-->
-            <h5 class="title-bg">Navigation</h5>
-            <ul class="post-category-list">
-                <li><a href="#"><i class="icon-plus-sign"></i>About Us</a></li>
-                <li><a href="#"><i class="icon-plus-sign"></i>Services</a></li>
-                <li><a href="#"><i class="icon-plus-sign"></i>Mission</a></li>
-                <li><a href="#"><i class="icon-plus-sign"></i>Clients</a></li>
-            </ul>
-
             <!--Latest News-->
             <h5 class="title-bg">Latest News</h5>
-            <ul class="popular-posts">
-                <li>
-                    <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-                    <h6><a href="#">Lorem ipsum dolor sit amet consectetur adipiscing elit</a></h6>
-                    <em>Posted on 09/01/15</em>
-                </li>
-                <li>
-                    <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-                    <h6><a href="#">Nulla iaculis mattis lorem, quis gravida nunc iaculis</a></h6>
-                    <em>Posted on 09/01/15</em>
-                <li>
-                    <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
-                    <h6><a href="#">Vivamus tincidunt sem eu magna varius elementum</a></h6>
-                    <em>Posted on 09/01/15</em>
-                </li>
-            </ul>
-
-            <!--Testimonials-->
-            <h5 class="title-bg">Testimonials</h5>
-    
-            <p class="quote-text side">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum felis fermentum."<cite>- Client Name, Big Company</cite></p>
-        
-            <p class="quote-text side">"Adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum."<cite>- Another Client Name, Big Company</cite></p>
-                
+            <% for(var i = posts.length - 1; i >= 0; i--) { %>
+                <ul class="popular-posts">
+                    <a href="/single?id=<%= posts[i]._id %>">
+                        <li>
+                            <img src="../post_images/<%= posts[i].image %>" alt="Popular Post">
+                            <h6><a href="/single?id=<%= posts[i]._id %>"><%= posts[i].about %></a></h6>
+                            <em>Posted on <%= posts[i].axilary_date %></em>
+                        </li>
+                    </a>
+                </ul>
+            <% } %>
+            
 
         </div><!-- End sidebar column -->
 
@@ -49,8 +28,10 @@
         ================================================== --> 
         <div class="span6"><!--Begin page content column-->
             <% for(var i = 0; i < posts.length; i++) { %>
-                    <h2 class="title-bg"><%= posts[i].about %></h2>
+                    <a class="color_black" href="/single?id=<%= posts[i]._id %>">
+                        <h2 class="title-bg"><%= posts[i].title %></h2>
 
+<<<<<<< HEAD
                     <a href="/single?id=<%= posts[i]._id %>"> <img src="../post_images/<%= posts[i].image %>"> </a>
                     <%if(posts[i].content) {%>
                     <p class="lead"><%= posts[i].content %></p>
@@ -58,6 +39,12 @@
                     <%if(posts[i].status == -1) {%>
                             <a class="btn btn-mini btn-inverse" href='/posts/my/add?post_id=<%=posts[i]._id%>'>Добавить к себе</a>
                     <%}%>
+=======
+                        <img src="../post_images/<%= posts[i].image %>"> 
+
+                        <p class="lead"><%= posts[i].about %> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin</p>
+                    </a>
+>>>>>>> 7ded0e1e47be1b5fd9a9d1a387ab657fb6e172b1
             <% } %>
 
             <div class="row">
@@ -99,9 +86,8 @@
             <!--Tabbed Content-->
             <h5 class="title-bg">More Info</h5>
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#comments" data-toggle="tab">Comments</a></li>
-                <li><a href="#tweets" data-toggle="tab">Tweets</a></li>
-                <li><a href="#about" data-toggle="tab">About</a></li>
+                <li class="active"><a href="#comments" data-toggle="tab">На перевод</a></li>
+                <li><a href="#about" data-toggle="tab">О переводах</a></li>
             </ul>
 
             <div class="tab-content">

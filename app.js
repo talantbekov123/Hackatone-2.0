@@ -13,11 +13,11 @@ var app = express();
 // set axilary global variables
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.set('db', 'mongodb://localhost/news11');
+app.set('db', 'mongodb://localhost/news17');
 /* facebook aoth handler */
 passport.use(new FacebookStrategy({
-        clientID: '1860725214215638',
-        clientSecret: '29c0d5e69d983fce069166482a9cb080',
+        clientID: '139531513263722',
+        clientSecret: 'd5945be6823bd406a975fe0d6838ba3f',
         callbackURL: 'http://localhost:3030/register/fb/callback',
         profileFields: ['id', 'first_name', 'last_name', 'email', 'birthday']
     },

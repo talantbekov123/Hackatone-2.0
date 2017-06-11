@@ -34,6 +34,10 @@ var postSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'Tag'
 	}],
+	axilary_date: {
+		type: String,
+		required: true
+	}
 }, {
 	timestamps: {
 		createdAt: 'created_at',

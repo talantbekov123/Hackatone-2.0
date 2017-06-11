@@ -9,24 +9,6 @@ module.exports = function(app, db) {
     });
   });
 
-  router.get('/register', function(req, res) {
-    db.Post.find({}, function(err, posts) {
-      res.render('register', {});
-    });
-  });
-
-  router.post('/login', function(req, res) {
-    db.User.findOne({ login: req.body.login, password: req.body.password  }, function (err, user) {
-      if(user == null) {
-          res.render('/', { message: 'Не верный логин или пароль.' });
-        }
-        else {
-          res.cookie('user', user );
-          console.log(user);
-        return res.redirect('/');
-        }
-    });
-  });
   
   router.get('/untranslated', function(req, res) {
       db.Post.find({status: -1}).exec(function(err, posts) {
@@ -56,6 +38,53 @@ module.exports = function(app, db) {
       });
     });
   });
+
+	router.get('/exit', function(req, res) {
+		res.cookie('user', null, { maxAge: 0, httpOnly: true });
+		return res.redirect('/');
+	});
+
+	router.post('/login', function(req, res) {
+		db.User.findOne({ login: req.body.login, password: req.body.password  }, function (err, user) {
+			if(user == null) {
+				db.Post.find({}, function (err, posts) {
+					console.log('xxx');
+					console.log(posts);
+					res.render('login', {message:"Не верный логин или пароль, попробуйте заново", posts: posts});
+				});
+			} else {
+				res.cookie('user', user );
+				return res.redirect('/');
+			}
+		});
+	});
+	
+
+	router.get('/single', function(req, res) {
+		db.Comment.find({ post_id: req.query.id }).populate('user_id').exec(function(err, comments) { 
+			db.Post.findOne({ _id: req.query.id }).populate('comments tags').exec(function(err, post){
+        var query = {
+          post_id: post._id
+        }
+        if(req.cookies.user) {
+          query.user_id = req.cookies.user._id;
+        }
+				db.Sympathy.findOne(query).exec(function(err, sympathy) {
+					db.Sympathy.count({post_id: post._id, state: 1}).exec(function(err, pos) {
+						db.Sympathy.count({post_id: post._id, state: -1}).exec(function(err, neg) {
+							db.User.findOne({id: post.user_id}).exec(function(err, user) {
+								post.views = post.views + 1;
+        					post.save(function(err) {
+        						console.log(post)
+									res.render('post-single', {comments: comments, user: user, post: post, sympathyCount: pos - neg, sympathy: sympathy });
+								});
+							})
+						});
+					});
+				});
+			});
+		});
+	});
 
   app.use('/', router);
 };

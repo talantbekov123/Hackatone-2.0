@@ -6,15 +6,15 @@ var app = require('../app');
 
 // create some tags
 const tags = [{
-		name:'программирование'
-	}, {
-		name:'аудит'
-	}, {
-		name:'бизнес'
-	}, {
 		name:'спорт'
 	}, {
-		name:'tech'
+		name:'футбол'
+	}, {
+		name:'саясат'
+	}, {
+		name:'итернет'
+	}, {
+		name:'технология'
 	}, {
 		name:'маркетинг'
 	}];
